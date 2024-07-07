@@ -1,0 +1,188 @@
+/* Styling for sent and received messages */
+.chat-area__message--sent {
+  text-align: right; /* Align messages sent by the current user to the right */
+  background-color: rgb(122, 184, 253); /* Light blue background for sent messages */
+  padding: 10px;
+  color: white;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+  margin-bottom: 10px;
+  margin-left: auto; /* Align to the right */
+  max-width: 70%;
+}
+
+.chat-area__message--received {
+  text-align: left; /* Align messages received from other users to the left */
+  background-color: lightgray; /* Light gray background for received messages */
+  padding: 10px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  margin-bottom: 10px;
+  margin-right: auto; /* Align to the left */
+  max-width: 87%;
+}
+
+/* General chat area styling */
+.chat-area {
+  background-color: #ffffff;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  height: 80%; /* Adjust height as needed */
+  
+
+}
+
+
+.chat-area__header {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  text-align: center; /* Center align the header text */
+  position: relative;
+  bottom: 40px;
+ 
+
+}
+
+.chat-area__message-container {
+  position: relative;
+  flex-grow: 1;
+  overflow-y: auto; /* Allow vertical scrolling */
+  padding: 10px;
+  border-top: 1px solid #ddd;
+  display: flex;
+  flex-direction: column; /* This ensures new messages appear at the bottom */
+  border-radius: 15px 15px 15px 15px;
+  scroll-behavior: smooth;
+  height: 400px;
+  width: 100%;
+  bottom: 25px;
+  /*box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
+  
+}
+
+.chat-area__message-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.chat-area__message {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid #ccc;
+  padding: 10px 0;
+}
+
+.chat-area__message p {
+  margin: 0;
+}
+
+.chat-area__message-text {
+  font-weight: bold;
+}
+
+.chat-area__message-sender {
+  font-style: italic;
+  color: #666;
+}
+
+.chat-area__message-timestamp {
+  color: #999;
+  font-size: 0.8rem;
+  margin-top: 5px;
+  text-align: right;
+}
+/* Light theme specific styles */
+.light-theme .chat-area {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.light-theme .chat-area__message-container {
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+}
+
+/* Dark theme specific styles */
+.dark-theme .chat-area {
+  background-color: #333333;
+  color: #ffffff;
+}
+
+.dark-theme .chat-area__message-container {
+  background-color: #444444;
+  border: 1px solid #555;
+}
+
+.dark-theme .chat-area__message--sent {
+  background-color: rgb(8, 127, 254);
+  color: whitesmoke;
+}
+
+.dark-theme .chat-area__message--received {
+  background-color: rgb(216, 216, 216);
+  color : black;
+
+}
+
+.dark-theme .chat-area__message-sender {
+  color:black;
+}
+
+.dark-theme .chat-area__message-timestamp {
+  color: black;
+}
+/* For screens 1024px and above */
+@media (min-width: 1024px) {
+  .chat-area {
+    height: 80vh; /* Adjust height as needed */
+  }
+}
+
+/* For screens between 768px and 1023px */
+@media (max-width: 1023px) {
+  .chat-area {
+    height: 70vh; /* Adjust height as needed */
+  }
+}
+
+/* For screens between 480px and 767px */
+@media (max-width: 767px) {
+  .chat-area {
+    height: 60vh; /* Adjust height as needed */
+  }
+  .chat-area__header{
+    bottom: 70px;
+  }
+}
+
+/* For screens below 480px */
+@media (max-width: 479px) {
+  .chat-area {
+    height: 50vh; /* Adjust height as needed */
+  }
+
+  .chat-area__header {
+    font-size: 1.2rem; /* Decrease header font size for smaller screens */
+    bottom: 20px; /* Adjust header position */
+  }
+
+  .chat-area__message-container {
+    padding: 5px; /* Adjust padding */
+    height: 300px ;
+    
+  }
+
+  .chat-area__message--sent,
+  .chat-area__message--received {
+    padding: 5px; /* Adjust padding */
+    max-width: 80%; /* Adjust message width */
+  }
+}
+
+

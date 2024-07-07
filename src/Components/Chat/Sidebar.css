@@ -1,0 +1,238 @@
+/* Default styles */
+.sidebar {
+  background-color: white;
+  color: #333;
+}
+
+.search-column {
+  background-color: white;
+  color: #333;
+  margin-top: 10px;
+}
+
+.search-input-container {
+  position: relative;
+  width: 100%;
+}
+
+.search-input {
+  background-color: lightgrey;
+  color: black;
+  font-size: 14px;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  padding-right: 30px;
+  box-sizing: border-box;
+}
+
+.clear-search-button {
+  position: absolute;
+  right: 10px;
+  top: 34%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 20px;
+  border: none;
+  background: transparent;
+  font-size: 20px;
+  cursor: pointer;
+  color: black;
+  padding: 0;
+}
+
+.search-results {
+  max-height: 250px;
+  overflow-y: auto;
+}
+
+.user-details {
+  cursor: pointer;
+  padding: 10px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  margin-bottom: 5px;
+}
+
+.user-details p {
+  margin: 0;
+}
+
+.user-details:hover {
+  background-color: #f5f5f5;
+}
+
+.conversation-list-container {
+  max-height: 500px;
+  overflow-y: auto;
+  margin: 0;
+  padding: 0;
+}
+
+/* Styling for the conversation list */
+.conversation-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  flex: 1;
+}
+
+/* Styling for each conversation item */
+.conversation-item {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  background-color: #fff;
+  margin: 0;
+  cursor: pointer;
+}
+
+.conversation-item-title {
+  font-weight: bold;
+  font-size: 16px;
+  color: #333;
+  flex-grow: 1;
+}
+
+.conversation-item-details {
+  font-size: 14px;
+  color: #666;
+}
+
+.conversation-item:hover {
+  border-radius: 10px;
+  background-color: #f5f5f5;
+
+}
+.delete-button{
+  background-color: transparent;
+  color: #f00;
+}
+
+/* Dark theme styles */
+.dark-theme {
+  background-color: #333;
+  color: #fff;
+}
+
+.dark-theme .search-input {
+  background-color: #555;
+  color: #fff;
+}
+
+.dark-theme .clear-search-button {
+  color: #fff;
+  background-color: transparent;
+}
+
+.dark-theme .clear-search-button:hover {
+  background-color: transparent;
+}
+
+.dark-theme .user-details {
+  background-color: #444;
+}
+
+.dark-theme .conversation-item {
+  background-color: #444;
+}
+
+.dark-theme .conversation-item-title {
+  color: #fff;
+}
+
+.dark-theme .conversation-item-details {
+  color: #ccc;
+}
+
+.dark-theme .search-column {
+  background-color: #444;
+  margin-top: 20px;
+}
+.dark-theme .conversation-item:hover{
+  background-color: #555;
+  max-width: 95%;
+
+}
+
+/* Light theme styles */
+.light-theme {
+  background-color: #f0f0f0;
+  color: #333;
+}
+
+.light-theme .search-input {
+  background-color: #ccc;
+}
+
+.light-theme .clear-search-button {
+  background-color: transparent;
+}
+
+.light-theme .clear-search-button:hover {
+  background-color: transparent;
+}
+
+.light-theme .search-input-container {
+  background-color: transparent;
+}
+
+.light-theme .search-column {
+  background-color: white;
+}
+
+.light-theme .sidebar {
+  background-color: white;
+}
+.light-theme .conversation-item:hover{
+  max-width: 95%;
+  background-color: #ccc;
+  border-radius: 10px;
+}
+
+
+
+
+/* Settings button styles */
+.sidebar .settings-button {
+  display: none;
+  position: absolute;
+  bottom: 5%;
+  left: 5px;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.light-theme .settings-button {
+  color: #333;
+}
+
+.dark-theme .settings-button {
+  color: #fff;
+}
+
+/* Profile picture styles */
+.profile-pic {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 10px;
+
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .sidebar .settings-button {
+    display: block;
+  }
+}
+
+@media (max-width: 480px) {
+  .sidebar .settings-button {
+    display: block;
+  }
+}

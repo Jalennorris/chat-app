@@ -1,0 +1,145 @@
+body, html {
+  margin: 0;
+  height: 100%;
+}
+
+.chatroom {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.chatroom-container {
+  display: flex;
+  flex: 1;
+  height: 100%;
+}
+
+.chatroom-sidebar {
+  width: 33%; /* Sidebar occupies 33% of the viewport width */
+  min-width: 300px; /* Minimum width of the sidebar */
+  flex: 0 0 auto;
+  background-color: #f0f0f0;
+  border-right: 1px solid lightgray;
+  overflow: hidden;
+}
+
+.chat-area {
+  position: sticky;
+  flex: 1; /* Chat area occupies remaining space */
+  padding: 20px;
+  box-sizing: border-box;
+  background-color: white
+}
+
+.back-button {
+  display: none;
+}
+
+body, html {
+  margin: 0;
+  height: 100%;
+}
+
+.chatroom {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.chatroom-container {
+  display: flex;
+  flex: 1;
+  height: 100%;
+}
+
+.chatroom-sidebar {
+  width: 33%; /* Sidebar occupies 33% of the viewport width */
+  min-width: 300px; /* Minimum width of the sidebar */
+  flex: 0 0 auto;
+  background-color: #f0f0f0;
+  border-right: 1px solid lightgray;
+  overflow: hidden;
+}
+
+.chat-area {
+  flex: 1; /* Chat area occupies remaining space */
+  padding: 20px;
+  box-sizing: border-box;
+  background-color: #ffffff;
+}
+
+.back-button {
+  display: none;
+}
+
+@media (max-width: 1024px) {
+  .chatroom-sidebar {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid lightgray;
+  }
+
+  .chatroom-sidebar.hide-sidebar {
+    display: none;
+  }
+
+  .chat-area {
+    flex: 1 1 auto;
+    display: block;
+  }
+
+  .back-button {
+    display: block;
+    border: none;
+    font-size: 25px;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+
+ .dark-theme .back-button{
+  background-color: transparent;
+
+ }
+}
+
+@media (max-width: 768px) {
+  .chatroom-sidebar {
+    border-bottom: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .chatroom-container {
+    flex-direction: column; /* Stack sidebar and chat area on smaller screens */
+  }
+
+  .chatroom-sidebar {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid lightgray;
+    height: auto;
+  }
+}
+
+
+@media (max-width: 768px) {
+  .chatroom-sidebar {
+    border-bottom: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .chatroom-container {
+    flex-direction: row; /* Stack sidebar and chat area on smaller screens */
+  }
+
+  .chatroom-sidebar {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid lightgray;
+    height: auto;
+  }
+}

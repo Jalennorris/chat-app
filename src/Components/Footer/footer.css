@@ -1,0 +1,10 @@
+.footer-container{
+border-top: 1px solid grey;
+}
+
+.footer-text{
+    text-align: center;
+    font-size: large;
+    font-weight: 500;
+    color: #2A1A1F ;
+}

@@ -1,0 +1,184 @@
+.header-container {
+  background: white;
+  color: #000000;
+  padding: 10px;
+  margin: 3px;
+  display: flex;
+  justify-content: space-between; /* Align items from left to right with space in between */
+  align-items: center;
+}
+
+
+.light-theme .header-container {
+  background: linear-gradient(to top, #fff, #f2f2f2, #e5e5e5, #d9d9d9, #cccccc);
+  color: #000;
+}
+
+
+.dark-theme .header-container {
+  background: linear-gradient(to top, #333333, #3d3d3d, #555555, #666666, #777777);
+  color: #fff;
+}
+
+
+.header-title {
+  color: rgb(177, 172, 172);
+  font-weight: bold;
+}
+
+
+
+.light-theme .header-title{
+  color: #000;
+}
+
+.dark-theme .header-title{
+  color: #fff;
+}
+
+
+.user-section {
+  display: flex;
+  align-items: center;
+}
+
+.header-button {
+  width: 100px;
+  height: 50px;
+  border-radius: 20px;
+  background-color: #2A1A1F;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  outline: none;
+  padding: 0;
+  margin-left: 10px; /* Add margin between button and greeting */
+}
+
+.header-button:hover {
+  transition: 0.7s;
+  background-color: #AD8350;
+}
+
+.logout-text {
+  margin-left: 5px;
+}
+
+.user-greeting {
+  font-weight: bolder;
+  margin-right: 10px; /* Add margin between greeting and logout button */
+}
+.logout-button{
+  background: transparent;
+  border-radius:50px ;
+
+  
+
+}
+.settings-button{
+  background-color: lightgray;
+  padding: 12px;
+  border-radius: 50%;
+  margin-right: 10px; /* Adjust margin as needed */
+  
+}
+.settings-icon{
+  font-size: 20px;
+  color: black;
+}
+.theme-toggle-button{
+  
+}
+
+.light-theme .theme-toggle-button{
+
+  background-color: rgb(23, 23, 23);
+  color: #fff;
+  border-radius: 50px;
+
+  
+}
+.light-theme .theme-toggle-button:hover{
+  background-color: black;
+  color: #fff;
+  border-radius: 50px;
+  
+}
+
+
+.dark-theme .theme-toggle-button{
+  background-color: gray;
+  color: dark;
+  border-radius: 50px;
+  
+}
+
+@media screen and (max-width: 768px) {
+  .header-container {
+       /* Set the background to transparent */
+    padding: 10px; /* Adjust padding as needed */
+    flex-direction: row; /* Stack items horizontally on smaller screens */
+    justify-content: space-between; /* Align items with space in between */
+    align-items: center; /* Align items vertically */
+    padding-bottom: 20px; /* Add bottom padding for spacing */
+  }
+  
+  .header-controls {
+    display: flex;
+    align-items: center;
+  }
+  
+  .header-title {
+    margin-bottom: 0; /* Remove extra margin */
+    margin-right: 20px; /* Add margin between title and controls */
+  }
+
+
+  .theme-toggle-button {
+    margin-top: 20px;
+    transform: translateY(-50%); /* Center vertically */
+    margin-right: 10px; /* Add margin to the right */
+  }
+  .settings-button{
+    display: none;
+  }
+  .theme-toggle-button{
+    display: none;
+  }
+}
+
+
+@media screen and (max-width: 480px) {
+  .header-container {
+       /* Set the background to transparent */
+    padding: 10px; /* Adjust padding as needed */
+    flex-direction: row; /* Stack items horizontally on smaller screens */
+    justify-content: space-between; /* Align items with space in between */
+    align-items: center; /* Align items vertically */
+    padding-bottom: 20px; /* Add bottom padding for spacing */
+  }
+  
+  .header-controls {
+    display: flex;
+    align-items: center;
+  }
+  
+  .header-title {
+    margin-bottom: 0; /* Remove extra margin */
+    margin-right: 20px; /* Add margin between title and controls */
+  }
+
+
+  .theme-toggle-button {
+    margin-top: 20px;
+    transform: translateY(-50%); /* Center vertically */
+    margin-right: 10px; /* Add margin to the right */
+  }
+  .settings-button{
+    display: none;
+  }
+}
+
