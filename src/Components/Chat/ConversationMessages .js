@@ -18,6 +18,8 @@ const ConversationMessages = ({ receiverUserName }) => {
   const [messages, setMessages] = useState([]);
   const messageListRef = useRef(null);
 
+  console.log(`username:${username}` )
+
   const { isLoading, isError, error, refetch } = useQuery(
     ['conversationMessages', conversationId],
     () => axios.get(`/conversations/${conversationId}/messages`).then(res => res.data),
@@ -87,6 +89,7 @@ const ConversationMessages = ({ receiverUserName }) => {
                   className={`chat-area__message ${isSenderCurrentUser ? 'chat-area__message--sent' : 'chat-area__message--received'}`}
                 >
                   <p className="chat-area__message-text">{message.message_text}</p>
+
     
                   <p className="chat-area__message-timestamp">
                   {format(new Date(message.sent_at), 'hh:mm aa, MMM dd, yyyy')}

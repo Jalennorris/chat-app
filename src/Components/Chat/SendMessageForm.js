@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import { useMutation } from 'react-query';
 import './SendMessageForm.css';
@@ -33,7 +33,7 @@ function SendMessageForm() {
     setMessageText(event.target.value);
   };
 
-  const sendMessage = async () => {
+  const sendMessage = useCallback( async () => {
     try {
       const response = await axios.post('/messages/send', {
         conversation_id: conversationId,
@@ -50,7 +50,7 @@ function SendMessageForm() {
     } catch (error) {
       throw error;
     }
-  };
+  },[conversationId, userId, messageText, socket]);
 
   const { mutate, isLoading, isError } = useMutation(sendMessage, {
     onSuccess: () => {
@@ -58,14 +58,14 @@ function SendMessageForm() {
       setMessageText('');
     },
     onError: (error) => {
-      console.error('Error sending message:', error.response.data.error);
-      setError('Error sending message. Please try again later.');
+      console.error('Error sending message:', error);
+      setError(error.response?.data?.error || error.message || 'Error sending message. Please try again later.');
     },
   });
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    sendMessage();
+    mutate();
   };
 
   return (

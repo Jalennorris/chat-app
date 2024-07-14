@@ -1,4 +1,4 @@
-import React, { useEffect, useState, lazy } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useQuery, useQueryClient } from 'react-query';
 import useAuthStore from '../../Store/authStore';
@@ -11,9 +11,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCog } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 import defaultProfilePic  from '../../Images/defaultProfilePic.png'
+import { IconButton } from '@mui/material';
+import DeleteIcon from '@mui/icons-material/Delete';
 
-const IconButton = lazy(()=> import('@mui/material/IconButton'))
-const DeleteIcon = lazy(() => import('@mui/icons-material/Delete'))
+
 
 const Sidebar = ({ onSidebarClick }) => {
   const userId = useAuthStore((state) => state.userId);
@@ -38,14 +39,30 @@ const Sidebar = ({ onSidebarClick }) => {
 
   const setClickedConversationId = useConversationStore((state) => state.setClickedConversationId);
 
-  const handleConversationClick = (conversationId, receiverUserName) => {
+  const handleConversationClick = (conversationId) => {
+    // Corrected the typo in the if condition
     if (conversationId) {
       setClickedConversationId(conversationId);
-      onSidebarClick(receiverUserName); // Assuming receiverUserName is what you intended to use
+  
+      // Find the conversation object from the conversations array using the conversationId
+      const conversation = conversations.find(conv => conv["Conversation ID"] === conversationId);
+  
+      if (conversation) {
+        // Determine the other user's name based on the conversation object
+        const otherUserName = conversation["Sender ID"] === userId 
+          ? conversation["Receiver Username"] 
+          : conversation["Sender Username"];
+  
+        onSidebarClick(otherUserName);
+        console.log(`clicked userName: ${otherUserName}`);
+      } else {
+        console.error('Conversation not found:', conversationId);
+      }
     } else {
       console.error('Invalid conversation ID:', conversationId);
     }
   };
+  
 
   const deleteConversation = async (conversationId) => {
     try {
@@ -153,9 +170,7 @@ const Sidebar = ({ onSidebarClick }) => {
       <ul className={`conversation-list ${theme === 'dark' ? 'dark-theme' : 'light-theme'}`}>
           {conversations.map((conversation) => (
             <li key={conversation["Conversation ID"]} className="conversation-item">
-              <React.Suspense fallback={<div>Loading...</div>}>
                 <img src={defaultProfilePic} alt="profile" className="profile-pic" />
-              </React.Suspense>
               <div
                 onClick={() => handleConversationClick(conversation["Conversation ID"], conversation["Receiver Username"])}
                 className="conversation-item-title"

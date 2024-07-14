@@ -6,8 +6,12 @@ import { Server } from 'socket.io';
 import cookieParser from 'cookie-parser';
 import dotenv from 'dotenv'; // Import dotenv for loading environment variables
 import path from 'path';
+import { fileURLToPath } from 'url';
 
 dotenv.config(); // Load environment variables from .env file
+
+// Get the directory name
+const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 // Routes
 //import indexRouter  from './routes/index.js'
@@ -20,7 +24,7 @@ app.use(cors({
     origin: '*',
 }));
 app.use(cookieParser());
-const port = process.env.PORT || 4000 ;
+const port = process.env.PORT;
 app.set("port", port);
 
 app.use(logger('dev'));

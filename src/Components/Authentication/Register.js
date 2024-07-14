@@ -5,6 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 
 import './register.css';
 
+
 const Register = () => {
   const [userData, setUserData] = useState({
     first_name: '',
@@ -15,27 +16,53 @@ const Register = () => {
     password: '',
   });
   const [errorMessage, setErrorMessage] = useState('');
-  const Navigate = useNavigate();
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
-    setUserData((prevState) => ({ ...prevState, [e.target.name]: e.target.value }));
+    const { name, value } = e.target;
+    setUserData((prevState) => ({ ...prevState, [name]: value }));
   };
 
   const handleRegister = async (e) => {
     e.preventDefault();
+  
     try {
+      console.log('Registering user with data:', userData);
+  
       const response = await axios.post('/users/register', userData);
-      if (response.data.status === 'success') {
+  
+      if (response.status === 201 && response.data) {
         console.log('User registration successful');
+        navigate('/login');
       } else {
-        setErrorMessage(response.data.message);
+        setErrorMessage('Unexpected error occurred.');
       }
-      Navigate('/login');
     } catch (error) {
       console.error('Error occurred during user registration:', error);
-      setErrorMessage('Registration failed. Please try again.');
+  
+      if (error.response) {
+        const { data } = error.response;
+        if (error.response.status === 400) {
+          // Handle validation errors (e.g., username/email already exists)
+          setErrorMessage(data.message || 'Validation error occurred.');
+        } else if (error.response.status === 500) {
+          // Handle server errors
+          console.error('Server error details:', data.error);
+          setErrorMessage(data.message || 'An unexpected server error occurred.');
+        } else {
+          setErrorMessage('An unexpected error occurred.');
+        }
+      } else if (error.request) {
+        console.error('No response received:', error.request);
+        setErrorMessage('No response from server. Please check your internet connection and try again.');
+      } else {
+        console.error('Error setting up request:', error.message);
+        setErrorMessage('An error occurred. Please try again.');
+      }
     }
   };
+
+
 
   return (
     <div>

@@ -1,24 +1,32 @@
-import pool from '../config/dbConfig.js';
-
+import pool from "../config/dbConfig.js";
 
 export default {
     getAllConversations: async (req, res) => {
         try {
-            const allConversations = await pool.query('SELECT * FROM conversations');
-            res.json(allConversations.rows);
+            const client = await pool.connect();
+            const query = 'SELECT * FROM conversations';
+            const { rows: allConversations } = await client.query(query);
+            client.release();
+            res.json(allConversations);
         } catch (error) {
             console.error('Error retrieving conversations:', error);
             res.status(500).json({ error: 'Internal Server Error' });
         }
     },
+
     getConversationById: async (req, res) => {
         try {
             const { id } = req.params;
-            const conversation = await pool.query('SELECT * FROM conversations WHERE conversation_id = $1', [id]);
-            if (conversation.rows.length === 0) {
+            const client = await pool.connect();
+            const query = 'SELECT * FROM conversations WHERE conversation_id = $1';
+            const { rows: conversation } = await client.query(query, [id]);
+            client.release();
+
+            if (conversation.length === 0) {
                 return res.status(404).json({ error: 'Conversation not found' });
             }
-            res.json(conversation.rows[0]);
+
+            res.json(conversation[0]);
         } catch (error) {
             console.error('Error retrieving conversation by ID:', error);
             res.status(500).json({ error: 'Internal Server Error' });
@@ -98,40 +106,52 @@ export default {
     },
     
     
-    
-   
-    
-    
+
     updateConversation: async (req, res) => {
         try {
             const { id } = req.params;
             const { type, title, participants } = req.body;
-            // Validate input
+
+            // Validate input (example validation)
             if (!type || !title || !participants || !Array.isArray(participants)) {
                 return res.status(400).json({ error: 'Invalid request body' });
             }
-            // Perform database operation to update conversation
+
+            // Perform database operation to update conversation (not implemented in this example)
             res.json({ message: 'Conversation updated successfully' });
         } catch (error) {
             console.error('Error updating conversation:', error);
             res.status(500).json({ error: 'Internal Server Error' });
         }
     },
+
     deleteConversation: async (req, res) => {
         try {
             const { id } = req.params;
-            // Perform database operation to delete conversation
-            const deleteQuery = 'DELETE FROM conversations WHERE conversation_id = $1';
-            const deleteValues = [id];
-            await pool.query(deleteQuery, deleteValues);
-            
-            res.json({ message: 'Conversation deleted successfully' });
+            const client = await pool.connect();
+
+            try {
+                await client.query('BEGIN');
+
+                const deleteConversationQuery = 'DELETE FROM conversations WHERE conversation_id = $1';
+                await client.query(deleteConversationQuery, [id]);
+
+                await client.query('COMMIT');
+
+                res.json({ message: 'Conversation deleted successfully' });
+            } catch (error) {
+                await client.query('ROLLBACK');
+                console.error('Error deleting conversation:', error);
+                res.status(500).json({ error: 'Internal Server Error' });
+            } finally {
+                client.release();
+            }
         } catch (error) {
             console.error('Error deleting conversation:', error);
             res.status(500).json({ error: 'Internal Server Error' });
         }
-    }
-    ,
+    },
+
     getConversationMessages: async (req, res) => {
         try {
             const { conversation_id } = req.params;
@@ -164,7 +184,8 @@ export default {
         }
     },
     
-    
+   
+
     getUserConversations: async (req, res) => {
         try {
             const { user_id } = req.params;
@@ -200,16 +221,4 @@ WHERE
     }
     
     
-    
-    
-    
-    
-    
-    
-    
-    
 };
-   
-
-
-   
