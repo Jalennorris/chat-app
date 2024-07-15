@@ -170,7 +170,7 @@ const Sidebar = ({ onSidebarClick }) => {
       <ul className={`conversation-list ${theme === 'dark' ? 'dark-theme' : 'light-theme'}`}>
           {conversations.map((conversation) => (
             <li key={conversation["Conversation ID"]} className="conversation-item">
-                <img src={defaultProfilePic} alt="profile" className="profile-pic" />
+                <img src={defaultProfilePic} alt="profile" loading='lazy' className="profile-pic" />
               <div
                 onClick={() => handleConversationClick(conversation["Conversation ID"], conversation["Receiver Username"])}
                 className="conversation-item-title"
