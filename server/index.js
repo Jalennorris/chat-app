@@ -8,7 +8,11 @@ import dotenv from 'dotenv'; // Import dotenv for loading environment variables
 import path from 'path';
 import { fileURLToPath } from 'url';
 
-dotenv.config(); // Load environment variables from .env file
+
+const  envFile = process.env.NODE_ENV === 'production'
+? 'env.production' : '.env.development';
+
+dotenv.config({path: envFile}); // Load environment variables from .env file
 
 // Get the directory name
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
@@ -47,11 +51,13 @@ app.use("*", (req, res) => {
     });
 });
 // Serve static files from the React app in production
+if(process.env.NODE_ENV === 'production'){
 app.use(express.static(path.join(__dirname, 'public')));
-
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
+
+}
 
 // Websocket event handlers
 const server = http.createServer(app);
