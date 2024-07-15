@@ -2,6 +2,7 @@
   "name": "chat-app",
   "version": "0.1.0",
   "private": true,
+  "homepage":"https://chat-app-stg-18f5286f1f74.herokuapp.com/",
   "engines": {
     "node": "18.18.0"
   },
