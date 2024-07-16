@@ -2,7 +2,7 @@
   "name": "chat-app",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://chat-app-stg-18f5286f1f74.herokuapp.com/",
+  "homepage": "https://chat-app-prd-d2eded3c74fe.herokuapp.com/",
   "engines": {
     "node": "18.18.0"
   },
@@ -62,4 +62,5 @@
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
   }
+
 }

@@ -20,7 +20,7 @@ const ConversationMessages = ({ receiverUserName }) => {
 
   console.log(`username:${username}` )
 
-  const { isLoading, isError, error, refetch } = useQuery(
+  const { isError, error, refetch } = useQuery(
     ['conversationMessages', conversationId],
     () => axios.get(`/conversations/${conversationId}/messages`).then(res => res.data),
     {

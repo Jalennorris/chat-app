@@ -22,7 +22,7 @@ function Settings() {
   };
 
   const queryClient = useQueryClient();
-  const { data: themeColor, isLoading } = useQuery(['themeColor', userId], getUserThemeColor);
+  const { data: themeColor} = useQuery(['themeColor', userId], getUserThemeColor);
   const mutation = useMutation(updateThemeColor, {
     onSuccess: () => {
       queryClient.invalidateQueries(['themeColor', userId]);
