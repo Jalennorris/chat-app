@@ -2,7 +2,6 @@
   "name": "chat-app",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://chat-app-prd-d2eded3c74fe.herokuapp.com/",
   "engines": {
     "node": "18.18.0"
   },
@@ -41,7 +40,7 @@
     "heroku-postbuild": "npm install && npm run build",
     "serve":"serve -s build"
   },
-  "proxy": "http://localhost:4000",
+  "proxy": "https://cheery-douhua-e49be9.netlify.app",
   "eslintConfig": {
     "extends": [
       "react-app",
