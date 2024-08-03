@@ -1,13 +1,12 @@
 import express from 'express';
 import user from '../controllers/user.js';
-import { loginValidationRules, createUserValidationRules, Validate } from '../middlewares/validate.js';
 import { verify, verifyRole } from '../middlewares/verify.js';
 
 const router = express.Router();
 
 // Public routes
-router.post('/register', createUserValidationRules, Validate, user.onCreateUser);
-router.post('/login', loginValidationRules, Validate, user.loginUser);
+router.post('/register',user.onCreateUser);
+router.post('/login', user.loginUser);
 router.post('/logout', user.logout);
 router.get('/admin', verify, verifyRole, (req, res) => {
   try {
